@@ -446,26 +446,23 @@ if ($isBitrix24Cloud)
 				<tr class="bx-layout-inner-top-row">
 					<td class="bx-layout-inner-left" id="layout-left-column">
 						<?$APPLICATION->IncludeComponent(
-	"bitrix:menu", 
-	"left_vertical", 
-	array(
-		"ROOT_MENU_TYPE" => "top",
-		"MENU_CACHE_TYPE" => "Y",
-		"MENU_CACHE_TIME" => "604800",
-		"MENU_CACHE_USE_GROUPS" => "N",
-		"MENU_CACHE_USE_USERS" => "Y",
-		"CACHE_SELECTED_ITEMS" => "N",
-		"MENU_CACHE_GET_VARS" => array(
-		),
-		"MAX_LEVEL" => "1",
-		"USE_EXT" => "Y",
-		"DELAY" => "N",
-		"ALLOW_MULTI_SELECT" => "N",
-		"COMPONENT_TEMPLATE" => "left_vertical",
-		"CHILD_MENU_TYPE" => "left"
-	),
-	false
-);
+							"bitrix:menu",
+							"left_vertical",
+							array(
+								"ROOT_MENU_TYPE" => file_exists($_SERVER["DOCUMENT_ROOT"].SITE_DIR.".superleft.menu_ext.php") ? "superleft" : "top",
+								"MENU_CACHE_TYPE" => "Y",
+								"MENU_CACHE_TIME" => "604800",
+								"MENU_CACHE_USE_GROUPS" => "N",
+								"MENU_CACHE_USE_USERS" => "Y",
+								"CACHE_SELECTED_ITEMS" => "N",
+								"MENU_CACHE_GET_VARS" => array(),
+								"MAX_LEVEL" => "1",
+								"USE_EXT" => "Y",
+								"DELAY" => "N",
+								"ALLOW_MULTI_SELECT" => "N"
+							),
+							false
+						);
 
 						if ($imBarExists)
 						{
@@ -541,38 +538,26 @@ if ($isBitrix24Cloud)
 										<div class="page-navigation"><?
 											$APPLICATION->ShowViewContent("above_pagetitle");
 											$APPLICATION->IncludeComponent(
-	"bitrix:menu", 
-	"top_horizontal", 
-	array(
-		"ROOT_MENU_TYPE" => "left",
-		"CHILD_MENU_TYPE" => "left",
-		"MENU_CACHE_TYPE" => "Y",
-		"MENU_CACHE_TIME" => "604800",
-		"MENU_CACHE_USE_GROUPS" => "Y",
-		"MENU_CACHE_USE_USERS" => "Y",
-		"CACHE_SELECTED_ITEMS" => "Y",
-		"MENU_CACHE_GET_VARS" => array(
-		),
-		"MAX_LEVEL" => "1",
-		"USE_EXT" => "Y",
-		"DELAY" => "N",
-		"ALLOW_MULTI_SELECT" => "N",
-		"COMPONENT_TEMPLATE" => "top_horizontal"
-	),
-	false,
-	array(
-		"ACTIVE_COMPONENT" => "Y"
-	)
-);
+												"bitrix:menu",
+												"top_horizontal",
+												array(
+													"ROOT_MENU_TYPE" => "left",
+													"CHILD_MENU_TYPE" => "sub",
+													"MENU_CACHE_TYPE" => "N",
+													"MENU_CACHE_TIME" => "604800",
+													"MENU_CACHE_USE_GROUPS" => "N",
+													"MENU_CACHE_USE_USERS" => "Y",
+													"CACHE_SELECTED_ITEMS" => "Y",
+													"MENU_CACHE_GET_VARS" => array(),
+													"MAX_LEVEL" => "3",
+													"USE_EXT" => "Y",
+													"DELAY" => "N",
+													"ALLOW_MULTI_SELECT" => "N"
+												),
+												false
+											);
 
-											$APPLICATION->IncludeComponent(
-	"bitrix:ui.toolbar", 
-	"template1", 
-	array(
-		"COMPONENT_TEMPLATE" => "template1"
-	),
-	false
-); ?>
+											$APPLICATION->IncludeComponent("bitrix:ui.toolbar", '', []); ?>
 										</div>
 										<div class="pagetitle-below"><?$APPLICATION->ShowViewContent("below_pagetitle")?></div>
 									</div>
